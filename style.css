@@ -1,7 +1,10 @@
 :root {
     --white: #fffbfb;
-    --grey: #f0eef1;
+    --grey: #131313;
     --black: #050505;
+    --red: #3D0C11;
+    --light-red: #ff7070;
+    --green: #58ff52;
 }
 * {
     box-sizing: border-box;
@@ -10,54 +13,90 @@
     font-family: 'Poppins', sans-serif;
 }
 body {
-    height: 100vh;
     display: grid;
     grid-template: 1fr 2fr 6fr / 1fr;
+    height: 100vh;
     background-color: var(--grey);
 }
 header {
-    font-size: 1.3em;
-    background-color: var(--white);
-    align-self: stretch;
-    color: var(--black);    
+    display: grid;   
     grid-area: 1 / 1 / 2 / 2;
-    display: grid;
+    align-self: stretch;
+    font-size: 1.3em;
+    color: var(--white); 
+    background-color: var(--black);
 }
 h1 {
-    font-weight: bold;
     align-self: center;
     justify-self: center;
 }
-
 main {
-    background-color: var(--grey);
     grid-area: 2 / 1 / 4 / 2;
     display: grid;
     grid-template-rows: 1fr 8fr;
+    background-color: var(--grey);
 }
 button {
+    cursor: pointer;
+    background-color: rgb(54, 54, 54);
+    color: var(--white);
+    transition: 100ms;
+}
+button:hover{
+    background-color: rgb(138, 137, 137);
+    transition: 100ms;
+}
+.btn-add {
     border-radius: 7px;
     font-size: 1.2em;
     place-self: center;
     height: 50px;
     width: 150px;
     border: 0;
-    transition: 300ms;
-}
-button:hover{
-    background-color: rgba(128, 128, 128, 0.336);
-    transition: 300ms;
-    cursor: pointer;
 }
 .library {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 250px);
-    padding: 20px;
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    grid-gap: 20px;
+    padding: 30px;
+    justify-content: stretch;
+    align-items: stretch;
 }
-.placeholder {
-    background-color: var(--white);
+.book {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 10px;
     height: 300px;
-    width: 380px;
     border-radius: 15px;
+    display: grid;
+    grid-template-rows: repeat(1fr, 5);
+    gap: 6px;
+    font-size: 1.2em;
+    border-left: 8px var(--red) solid;
+}
+.book > div {
+    align-self: center;
+    justify-self: center;
+    border-bottom: var(--red) solid 3px;
+}
+.book > button {
+    border: 0;
+    border-radius: 8px;
+    font-size: 0.9em;
+}
+.delete:hover{
+    background-color: #5f5f5f77;
+
+}
+.readStatus {
+    background: var(--green);
+}
+.readStatus:hover {
+    background-color: rgb(161, 255, 158)
+}
+.notRead {
+    background-color: var(--light-red);
+}
+.notRead:hover {
+    background-color: #ff9393;
 }
