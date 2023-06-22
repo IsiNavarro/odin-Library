@@ -27,8 +27,8 @@ function displayLibraryAsGrid(array) {
         divPages.textContent = `${element.pages} pages`;
         let readBtn = document.createElement('button');
         readBtn.textContent = element.read ? 'read' : 'not read';
-        readBtn.classList.add('readStatus');
-        if (!element.read) {readBtn.classList.toggle('notRead')}
+        readBtn.setAttribute('id', 'readBtn');
+        if (element.read) {readBtn.classList.toggle('read')}
         let delBtn = document.createElement('button');
         delBtn.classList.add('delete');
         delBtn.textContent = 'Remove x';
@@ -43,8 +43,10 @@ function displayLibraryAsGrid(array) {
     });
 }
 
-let HarryPotter = new Book('Harry Potter III: The prisoner of Azkaban', 'J.K. Rowling', '125', true);
+let HarryPotter = new Book('Harry Potter III: The prisoner of Azkaban', 'J.K. Rowling', '125', false);
+let idkbook = new Book('John Paul II', 'Asia', 2137, true);
 
 addBookToLibrary(HarryPotter, library);
+addBookToLibrary(idkbook, library);
 
 displayLibraryAsGrid(library);
