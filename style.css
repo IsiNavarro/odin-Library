@@ -38,7 +38,7 @@ main {
 }
 button {
     cursor: pointer;
-    background-color: rgb(54, 54, 54);
+    background-color: var(--grey);
     color: var(--white);
     transition: 100ms;
 }
