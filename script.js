@@ -90,7 +90,8 @@ submitBtn.addEventListener('click', (event) => {
     const newBookName = document.getElementById('name').value;
     const newBookAuthor = document.getElementById('author').value;
     const newBookPages = document.getElementById('pages').value;
-    const newBookRead = document.getElementById('read').value;
+    const newBookRead = document.getElementById('readCheckbox').checked;
+    console.log(newBookRead);
 
     const newBook = new Book(newBookName, newBookAuthor, newBookPages, newBookRead);
 
