@@ -1,52 +1,112 @@
-
 const libraryGrid = document.getElementById('libraryGrid');
-
-let library = [];
+const addBookBtn = document.getElementById('addBookBtn');
+const popUp = document.getElementById('popUp');
+const closePopBtn = document.getElementById('closePopBtn');
+const submitBtn = document.getElementById('submit');
+const readBtns = document.getElementsByClassName('readBtn');
 
 function Book(name, author, pages, read) {
     this.name = name;
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.displayed = false;
 }
 
-function addBookToLibrary(object, array) {
-    array.push(object);
+function addBookToLibrary(book, library) {
+    library.push(book);
 }
 
-function displayLibraryAsGrid(array) {
-    array.forEach(element => {
-        let gridElement = document.createElement('div');
-        gridElement.classList.add('book');
+function displayLibrary (library) {
+    library.forEach(book => {
 
-        let divName = document.createElement('div');
-        divName.textContent = element.name;
-        let divAuthor = document.createElement('div');
-        divAuthor.textContent = element.author;
-        let divPages = document.createElement('div');
-        divPages.textContent = `${element.pages} pages`;
-        let readBtn = document.createElement('button');
-        readBtn.textContent = element.read ? 'read' : 'not read';
-        readBtn.setAttribute('id', 'readBtn');
-        if (element.read) {readBtn.classList.toggle('read')}
-        let delBtn = document.createElement('button');
-        delBtn.classList.add('delete');
-        delBtn.textContent = 'Remove x';
+        if (book.displayed) return; // Checks if book is already displayed and skips if it is
+        else {
+            let gridElement = document.createElement('div'); // Creates div (card) to display
+            gridElement.classList.add('book');
 
-        gridElement.appendChild(divName);
-        gridElement.appendChild(divAuthor);
-        gridElement.appendChild(divPages);
-        gridElement.appendChild(readBtn);
-        gridElement.appendChild(delBtn);        
-        
-        libraryGrid.appendChild(gridElement);
+            let elementName = document.createElement('div'); // Creates and adds NAME to div
+            elementName.textContent = book.name;
+            gridElement.appendChild(elementName);
+
+            let elementAuthor = document.createElement('div'); // AUTHOR
+            elementAuthor.textContent = book.author;
+            gridElement.appendChild(elementAuthor);
+
+            let elementPages = document.createElement('div'); // PAGES
+            elementPages.textContent = `${book.pages} pages`;
+            gridElement.appendChild(elementPages);
+
+            let elementRead = document.createElement('button'); // READ button ; checks read?
+            elementRead.classList.add('readBtn');
+                // Give id to button READ or NOT READ
+                if (book.read) {
+                    elementRead.textContent = `read`;
+                    elementRead.setAttribute('id', 'read');
+                } else {
+                    elementRead.textContent = `not read`;
+                    elementRead.setAttribute('id', 'notRead')
+                }
+                // Toogle id and book.read status
+                elementRead.addEventListener('click', () => {
+                    if (book.read) {
+                        elementRead.textContent = 'not read';
+                        elementRead.setAttribute('id', 'notRead');
+                        book.read = false;
+                    }
+                    else {
+                        elementRead.textContent = 'read'
+                        elementRead.setAttribute('id', 'read');
+                        book.read = true;
+                    };
+                })
+            gridElement.appendChild(elementRead);
+
+            let deleteButton = document.createElement(`button`); // DELETE button
+            deleteButton.textContent = 'delete';
+            gridElement.appendChild(deleteButton);
+
+            libraryGrid.appendChild(gridElement);
+            book.displayed = true;
+        }
     });
 }
 
-let HarryPotter = new Book('Harry Potter III: The prisoner of Azkaban', 'J.K. Rowling', '125', false);
-let idkbook = new Book('John Paul II', 'Asia', 2137, true);
+// Toggle book.read status
 
-addBookToLibrary(HarryPotter, library);
-addBookToLibrary(idkbook, library);
+//ADD NEW BOOK Button - POPUP
+addBookBtn.addEventListener('click', () => {
+    popUp.style.display = 'flex'
+})
 
-displayLibraryAsGrid(library);
+closePopBtn.addEventListener('click', (event) => {
+    event.preventDefault();// Prevents form submission and page reload
+    popUp.style.display = 'none';
+})
+
+submitBtn.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevents form submission and page reload
+
+    const newBookName = document.getElementById('name').value;
+    const newBookAuthor = document.getElementById('author').value;
+    const newBookPages = document.getElementById('pages').value;
+    const newBookRead = document.getElementById('read').value;
+
+    const newBook = new Book(newBookName, newBookAuthor, newBookPages, newBookRead);
+
+    addBookToLibrary(newBook, library);
+    displayLibrary(library);
+
+    popUp.style.display = 'none'; //CLOSE PopUp
+})
+
+
+
+
+
+let library = [];
+const sampleBook1 = new Book(`sample`, `sample`, 321, true);
+const SampleBook2 = new Book(`sample2`, `sample2`, 123, false);
+addBookToLibrary(sampleBook1, library);
+addBookToLibrary(SampleBook2, library);
+displayLibrary(library);

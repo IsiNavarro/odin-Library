@@ -88,15 +88,73 @@ button:hover{
     background-color: #5f5f5f77;
 
 }
-#readBtn.read {
+#read {
     background: var(--green);
 }
-#readBtn.read:hover {
+#read:hover {
     background-color: rgb(161, 255, 158)
 }   
-#readBtn {
+#notRead {
     background-color: var(--light-red);
 }
-#readBtn:hover {
+#notRead:hover {
     background-color: #ff9393;
+}
+#popUp {
+    display: none;
+    flex-flow: column;
+    position: absolute; 
+    gap: 10px;
+    left: 0; 
+    right: 0;
+    top: 30%;
+    width: 300px;
+    border-radius: 20px;
+    padding: 20px;
+    margin-left: auto; 
+    margin-right: auto;
+    background-color: var(--black);
+    color: var(--white);
+    z-index: 1;
+    transition: 300ms;
+}
+form {
+    display: flex;
+    flex-flow: column;
+    align-items: stretch;
+    gap: 12px;
+}
+button[type="submit"] {
+    border-radius: 5px;
+    background-color: var(--red);
+    font-size: 1.1em;
+    height: 38px;
+    border: none;
+    transition: 100ms;
+}
+button[type="submit"]:hover {
+    background-color: #421519;
+    transition: 100ms;
+}
+input[type="text"],input[type="number"] {
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 10px;
+}
+input:focus{
+    border: none;
+}
+#closePopBtn {
+    border-radius: 5px;
+    background-color: var(--grey);
+    font-size: 1.1em;
+    height: 38px;
+    border: none;
+    transition: 100ms;
+}
+#closePopBtn:hover {
+    background-color: #353535;
+    transition: 100ms;
 }
