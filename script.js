@@ -2,7 +2,7 @@ const libraryGrid = document.getElementById('libraryGrid');
 const addBookBtn = document.getElementById('addBookBtn');
 const popUp = document.getElementById('popUp');
 const closePopBtn = document.getElementById('closePopBtn');
-const submitBtn = document.getElementById('submit');
+const form = document.getElementById('form');
 const readBtns = document.getElementsByClassName('readBtn');
 
 function Book(name, author, pages, read) {
@@ -84,7 +84,7 @@ closePopBtn.addEventListener('click', (event) => {
     popUp.style.display = 'none';
 })
 
-submitBtn.addEventListener('click', (event) => {
+form.addEventListener('submit', (event) => {
     event.preventDefault(); // Prevents form submission and page reload
 
     const newBookName = document.getElementById('name').value;
