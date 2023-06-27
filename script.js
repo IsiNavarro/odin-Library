@@ -22,7 +22,15 @@ function addBookToLibrary(book, library) {
 }
 
 function deleteBookFromLibrary(library, dataAttribute){
-    return
+    let book = {};
+    for(let i = 0; i<library.length; i++){
+        book = library[i];
+        if (book.dataIndex == dataAttribute) {
+            console.log(book);
+            library.splice(i, 1);
+        }
+    }
+    //displayLibrary(library);
 }
 
 function displayLibrary (library) {
