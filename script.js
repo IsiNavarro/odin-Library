@@ -78,7 +78,6 @@ function displayLibrary (library) {
     });
 }
 
-// Toggle book.read status
 
 //ADD NEW BOOK Button - POPUP
 addBookBtn.addEventListener('click', () => {
