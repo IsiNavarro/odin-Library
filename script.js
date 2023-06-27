@@ -5,12 +5,16 @@ const closePopBtn = document.getElementById('closePopBtn');
 const form = document.getElementById('form');
 const readBtns = document.getElementsByClassName('readBtn');
 
+let index = 0;
+
 function Book(name, author, pages, read) {
     this.name = name;
     this.author = author;
     this.pages = pages;
     this.read = read;
     this.displayed = false;
+    this.dataIndex = index;
+    index ++;
 }
 
 function addBookToLibrary(book, library) {
@@ -65,6 +69,8 @@ function displayLibrary (library) {
             let deleteButton = document.createElement(`button`); // DELETE button
             deleteButton.textContent = 'delete';
             gridElement.appendChild(deleteButton);
+
+            gridElement.setAttribute('data-index', book.dataIndex); // Data attribute
 
             libraryGrid.appendChild(gridElement);
             book.displayed = true;
