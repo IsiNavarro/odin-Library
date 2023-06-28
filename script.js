@@ -21,7 +21,8 @@ function addBookToLibrary(book, library) {
     library.push(book);
 }
 
-function deleteBookFromLibrary(library, dataAttribute){
+function deleteBookFromLibrary(dataAttribute){
+    // Deletes book from array
     let book = {};
     for(let i = 0; i<library.length; i++){
         book = library[i];
@@ -30,7 +31,10 @@ function deleteBookFromLibrary(library, dataAttribute){
             library.splice(i, 1);
         }
     }
-    //displayLibrary(library);
+    // Deletes the div on display
+    let divDataAttribute = "data-index";
+    let div = document.querySelector(`div[${divDataAttribute}="${dataAttribute}"]`);
+    if (div) {div.remove()}
 }
 
 function displayLibrary (library) {
@@ -85,7 +89,7 @@ function displayLibrary (library) {
                 let dataAttribute = parentNode.getAttribute('data-index');
                 console.log(dataAttribute);
 
-                deleteBookFromLibrary(library, dataAttribute);
+                deleteBookFromLibrary(dataAttribute);
             })
             gridElement.appendChild(deleteButton);
 
