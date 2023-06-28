@@ -5,6 +5,7 @@ const closePopBtn = document.getElementById('closePopBtn');
 const form = document.getElementById('form');
 const readBtns = document.getElementsByClassName('readBtn');
 
+let library = [];
 let index = 0;
 
 function Book(name, author, pages, read) {
@@ -34,7 +35,7 @@ function deleteBookFromLibrary(dataAttribute){
     // Deletes the div on display
     let divDataAttribute = "data-index";
     let div = document.querySelector(`div[${divDataAttribute}="${dataAttribute}"]`);
-    if (div) {div.remove()}
+    if (div) div.remove();
 }
 
 function displayLibrary (library) {
@@ -93,7 +94,7 @@ function displayLibrary (library) {
             })
             gridElement.appendChild(deleteButton);
 
-            gridElement.setAttribute('data-index', book.dataIndex); // Data attribute
+            gridElement.setAttribute('data-index', book.dataIndex); // ADD Data attribute
 
             libraryGrid.appendChild(gridElement);
             book.displayed = true;
@@ -128,13 +129,4 @@ form.addEventListener('submit', (event) => {
     popUp.style.display = 'none'; //CLOSE PopUp
 })
 
-
-
-
-
-let library = [];
-const sampleBook1 = new Book(`sample`, `sample`, 321, true);
-const SampleBook2 = new Book(`sample2`, `sample2`, 123, false);
-addBookToLibrary(sampleBook1, library);
-addBookToLibrary(SampleBook2, library);
 displayLibrary(library);
